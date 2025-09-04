@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Events{% endblock %}
+
+{% block content %}
+<!-- Page Hero -->
+<section class="visual-hero animated-gradient-hero">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center justify-content-center">
+            <div class="col-lg-8">
+                <h1 class="display-2 text-white animate-hero">Ghana Union Events</h1>
+                <p class="lead-text text-white-50 animate-hero" style="animation-delay: 0.2s;">
+                    Connect, learn, and celebrate with our community.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <!-- Upcoming Events -->
+        <h2 class="mb-5">Upcoming Events</h2>
+        <div class="row">
+            {% for event in upcoming_events %}
+            <div class="col-md-4 mb-4">
+                <div class="list-card h-100">
+                    <img src="{{ event.featured_image.url }}" class="card-img-top" alt="{{ event.title }}" style="height: 200px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                        <p class="card-text text-muted"><small>{{ event.date_time|date:"F d, Y" }} &bull; {{ event.location }}</small></p>
+                        <h5 class="card-title">{{ event.title }}</h5>
+                        <a href="{% url 'events:detail' event.pk %}" class="btn btn-primary mt-auto">View Details & RSVP</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col"><p class="lead-text">No upcoming events are scheduled at this time.</p></div>
+            {% endfor %}
+        </div>
+
+        {% if past_events %}
+        <hr class="my-5">
+        <!-- Past Events Archive -->
+        <h2 class="mb-5">Past Events Archive</h2>
+        <div class="row">
+            {% for event in past_events %}
+            <div class="col-md-4 mb-4">
+                <div class="list-card h-100">
+                    <div class="card-body">
+                        <p class="card-text text-muted"><small>{{ event.date_time|date:"F d, Y" }}</small></p>
+                        <h5 class="card-title">{{ event.title }}</h5>
+                        <a href="{% url 'events:detail' event.pk %}" class="btn btn-outline-secondary mt-auto">View Details</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,96 @@
+// static/scss/_custom.scss
+
+// This file uses variables defined in _variables.scss
+// It requires the main.scss file to make them available via `@use`.
+
+// Custom Button Styles
+.btn {
+  border-radius: 50px; // Pill-shaped buttons
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+}
+
+.btn-primary {
+    &:hover {
+    transform: translateY(-3px);
+    box-shadow: $box-shadow;
+  }
+}
+
+// Custom Card Styles
+.card {
+  border: none;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $box-shadow;
+  }
+}
+
+// Header Styles
+.navbar {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  border: none;
+  font-family: $font-family-sans-serif;
+  transition: all 0.3s ease-in-out;
+  // **ADD THIS LINE:** The subtle background
+  background-color: rgba(0, 0, 0, 0.1);
+
+  .navbar-brand {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    color: $white;
+  }
+
+  .nav-link {
+    // **CHANGE THIS:** Remove uppercase
+    text-transform: none; 
+    font-weight: 500; // Make it a bit lighter
+    font-size: 1rem; // Make it a bit larger
+    color: $white;
+    letter-spacing: 0.5px; // Reduce spacing
+    
+    &:hover {
+        color: $primary;
+    }
+  }
+  
+  .dropdown-menu {
+      .dropdown-item {
+          color: $charcoal !important;
+      }
+  }
+
+  // Styles for when the navbar is "scrolled"
+  &.navbar-scrolled {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    background-color: $white;
+    box-shadow: $box-shadow-sm;
+
+    .navbar-brand, .nav-link {
+      color: $charcoal;
+      &:hover {
+        color: $primary;
+      }
+    }
+  }
+}
+
+// Hero Section
+.hero-section {
+  height: 100vh;
+  min-height: 700px;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('https://images.unsplash.com/photo-1591249963326-45b5a380a599?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80');
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+}
+
+.hero-section h1 {
+    font-family: $headings-font-family;
+    font-weight: 300; /* This is the KEY - use a light font weight */
+    line-height: 1.1; /* Tighten up the line spacing */
+}

@@ -1,0 +1,146 @@
+/* static/css/main.css */
+
+/* 1. ROOT VARIABLES (The new way to do variables in pure CSS) */
+:root {
+    /* New Accent Color (inspired by Hempel Foundation) */
+    --primary-color: #00c49a; /* A vibrant, modern teal */
+
+    /* Main Palette */
+    --white: #ffffff;
+    --gray-100: #f8f9fa;
+    --charcoal: #212529;
+
+    /* Typography */
+    --font-family-sans-serif: 'Inter', sans-serif;
+    --font-family-headings: 'Poppins', sans-serif;
+
+    /* Components */
+    --box-shadow-sm: 0 .125rem .25rem rgba(0, 0, 0, .075);
+    --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+}
+
+/* 2. BASE STYLES (body, headings, etc.) */
+body {
+    font-family: var(--font-family-sans-serif);
+    color: var(--charcoal);
+    line-height: 1.7;
+    padding-top: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-headings);
+    font-weight: 700;
+    color: var(--charcoal);
+}
+
+a, .btn {
+    transition: all 0.3s ease-in-out;
+}
+
+/* 3. COMPONENT STYLES (buttons, navbar, hero, etc.) */
+
+/* Buttons */
+.btn {
+    border-radius: 50px;
+    text-transform: none; /* Changed from uppercase */
+    font-weight: 500;
+    padding: .75rem 1.5rem;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--box-shadow);
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* static/css/main.css */
+
+/* Header / Navbar */
+.navbar {
+    padding: 1rem 0; /* REDUCED PADDING */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease-in-out;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Scrolled State */
+.navbar.navbar-scrolled {
+    padding: 0.5rem 0; /* REDUCED PADDING */
+    background-color: var(--white);
+    border-bottom: 1px solid #eee;
+    box-shadow: var(--box-shadow-sm);
+}
+
+/* Brand / Logo */
+.navbar .navbar-brand {
+    padding: 0;
+}
+.navbar .navbar-brand img {
+    max-height: 35px; /* Control the logo size */
+    transition: all 0.3s ease-in-out;
+}
+.navbar.navbar-scrolled .navbar-brand img {
+    max-height: 30px; /* Slightly smaller logo on scroll */
+}
+
+/* Logo Swapping Logic */
+.navbar .logo-dark {
+    display: none; /* Hide the dark logo by default */
+}
+.navbar .logo-light {
+    display: block; /* Show the light logo by default */
+}
+.navbar.navbar-scrolled .logo-dark {
+    display: block; /* Show the dark logo on scroll */
+}
+.navbar.navbar-scrolled .logo-light {
+    display: none; /* Hide the light logo on scroll */
+}
+
+
+/* Navigation Links */
+.navbar .nav-link {
+    font-family: var(--font-family-sans-serif);
+    text-transform: none;
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--white);
+    margin: 0 0.5rem;
+}
+.navbar.navbar-scrolled .nav-link {
+    color: var(--charcoal);
+}
+.navbar .nav-link:hover {
+    color: var(--primary);
+}
+
+/* Dropdown Menu (for logged-in user) */
+.navbar .dropdown-menu {
+    border-radius: var(--border-radius);
+    border: 1px solid #eee;
+}
+.navbar .dropdown-menu .dropdown-item {
+    color: var(--charcoal) !important;
+}
+.navbar .dropdown-menu .dropdown-item:hover {
+    background-color: var(--gray-100);
+    color: var(--primary) !important;
+}
+
+/* Mobile Toggler Icon */
+.navbar .navbar-toggler {
+    border: none;
+}
+.navbar .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+.navbar.navbar-scrolled .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}

@@ -1,0 +1,44 @@
+<!-- templates/components/footer.html -->
+{% load static %}
+<footer class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <img src="{% static 'images/cardlogo.png' %}" alt="Ghana Union Greater Manchester Logo" class="footer-logo mb-3">
+                <p class="text-muted">Uniting Ghana, Empowering Progress. Connecting Ghanaians globally for professional and cultural development.</p>
+            </div>
+            <div class="col-lg-2 col-md-4 mb-5 mb-lg-0">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="{% url 'membership:plans' %}">Membership</a></li>
+                    <li><a href="{% url 'events:list' %}">Events</a></li>
+                    <li><a href="{% url 'news:list' %}">News</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-4 mb-5 mb-lg-0">
+                <h5>Contact</h5>
+                <ul class="list-unstyled footer-links">
+                    <li><i class="fas fa-home me-2"></i> Accra, GHANA</li>
+                    <li><i class="fas fa-envelope me-2"></i> info@ghanaunion.org</li>
+                    <li><i class="fas fa-phone me-2"></i> +233 24 123 4567</li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <h5>Follow Us</h5>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr class="my-4">
+        <div class="row">
+            <div class="col-12 text-center">
+                <p class="mb-0 small text-muted">Copyright &copy; {% now "Y" %} Ghana Union. All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>

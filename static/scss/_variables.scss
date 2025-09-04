@@ -1,0 +1,45 @@
+// static/scss/_variables.scss
+
+// 1. NEW MINIMALIST COLOR PALETTE
+// Main Palette
+$white:    #ffffff;
+$gray-100: #f8f9fa; // For light background sections
+$gray-400: #ced4da; // For borders
+$gray-700: #495057; // For muted text
+$charcoal: #212529; // For primary text
+$black:    #000;
+
+// New Accent Color (inspired by Hempel Foundation)
+$accent-teal: #00c49a; // A vibrant, modern teal
+
+// 2. BOOTSTRAP THEME COLOR OVERRIDES
+// We are mapping our new palette to Bootstrap's system.
+// This is powerful because now 'btn-primary', 'text-primary', etc., will use our new accent color.
+$primary:       $accent-teal;
+$secondary:     $gray-700;
+$light:         $gray-100;
+$dark:          $charcoal;
+
+// We'll keep these for functional colors (like error messages), but won't use them in the main design.
+$success:       #198754;
+$info:          #0dcaf0;
+$warning:       #ffc107;
+$danger:        #dc3545;
+
+
+// 3. TYPOGRAPHY (no changes needed here, but good to keep)
+$font-family-sans-serif: 'Inter', sans-serif;
+$headings-font-family:   'Poppins', sans-serif; // ADD THIS LINE
+$headings-font-weight:   700; // We will override this for the hero
+$headings-color:         $charcoal;
+$h1-font-size:           3.5rem;
+$h2-font-size:           2.5rem;
+
+// 4. COMPONENTS (no changes needed here)
+$border-radius:          .5rem;
+$border-radius-lg:       .75rem;
+$box-shadow-sm:          0 .125rem .25rem rgba($black, .075);
+$box-shadow:             0 .5rem 1rem rgba($black, .15);
+$btn-padding-y:          .75rem;
+$btn-padding-x:          1.5rem;
+$btn-font-weight:        600;

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<!-- Article Header -->
+<div class="article-header" style="padding-top: 120px;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <div class="meta mb-2">
+                    <span>{{ post.published_date|date:"F d, Y" }}</span>
+                </div>
+                <h1>{{ post.title }}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- Main Article Content -->
+            <div class="col-lg-8">
+                <figure class="mb-5">
+                    <img class="img-fluid rounded" src="{{ post.featured_image.url }}" alt="{{ post.title }}">
+                </figure>
+                <article class="article-content">
+                    {{ post.content|linebreaks }}
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

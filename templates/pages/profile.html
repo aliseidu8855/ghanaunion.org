@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+<!-- Profile Header -->
+<div class="profile-header">
+    <div class="container">
+        <h1 class="display-5">Welcome, {{ user.first_name|default:user.username }}!</h1>
+        <p class="lead-text">This is your member dashboard.</p>
+    </div>
+</div>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="row">
+            <!-- Left Sidebar -->
+            <div class="col-lg-4 mb-4 mb-lg-0">
+                <div class="profile-sidebar">
+                    <img src="{{ user.profile.profile_photo.url }}" alt="{{ user.get_full_name }}" class="profile-photo">
+                    <h4 class="mb-1">{{ user.get_full_name }}</h4>
+                    <p class="text-muted">{{ user.profile.profession|default:"Profession not set" }}</p>
+                    <hr>
+                    <div class="d-grid">
+                        <a href="{% url 'edit_profile' %}" class="btn btn-primary">Edit Profile</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Content Area -->
+            <div class="col-lg-8">
+                <div class="profile-content">
+                    {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-success" role="alert">
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <h4>My Details</h4>
+                    <ul class="list-group list-group-flush mt-3">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>Email:</strong>
+                            <span>{{ user.email }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>Phone:</strong>
+                            <span>{{ user.profile.phone|default:"Not provided" }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>Location:</strong>
+                            <span>{{ user.profile.location|default:"Not provided" }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>Membership Tier:</strong>
+                            <span class="badge bg-primary">{{ user.profile.membership_tier.name|default:"Not assigned" }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>Approval Status:</strong>
+                            {% if user.profile.is_approved %}
+                                <span class="badge bg-success">Approved</span>
+                            {% else %}
+                                <span class="badge bg-secondary">Pending Approval</span>
+                            {% endif %}
+                        </li>
+                    </ul>
+
+                    <h4 class="mt-5">My Bio</h4>
+                    <p class="text-muted mt-3">
+                        {{ user.profile.bio|default:"Your bio is empty. Please update your profile by clicking 'Edit Profile'." }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

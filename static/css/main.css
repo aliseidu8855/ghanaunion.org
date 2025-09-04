@@ -1,0 +1,795 @@
+/*
+==================================
+Ghana Union - Main Stylesheet
+==================================
+1.  :root Variables
+2.  Global Styles
+3.  Component Styles
+    - Buttons
+    - Cards
+    - Navbar
+    - Footer
+4.  Layout Styles
+    - Hero Section
+    - Page Headers
+    - Section Padding
+5.  Page-Specific Styles
+    - Authentication Forms
+    - News & Events Lists
+6.  Responsive Adjustments
+==================================
+*/
+
+/* 1. :root VARIABLES (The Official Ghanaian Design System) */
+:root {
+    /* Brand Colors */
+    --ghana-gold: #D4AF37;  /* A richer, more elegant gold */
+    --ghana-green: #006B3F; /* The classic deep green */
+    --ghana-red: #CE1126;   /* The vibrant national red */
+
+    /* Base Palette */
+    --white: #ffffff;
+    --gray-100: #f8f9fa;
+    --charcoal: #212529;
+    --gray-700: #6c757d;
+
+    /* Functional Mapping */
+    --primary: var(--ghana-gold);
+    --secondary: var(--ghana-green);
+    --success: var(--ghana-green);
+    --danger: var(--ghana-red);
+
+    /* Typography & Components (no changes needed) */
+    --font-family-sans-serif: 'Inter', sans-serif;
+    --font-family-headings: 'Poppins', sans-serif;
+    --box-shadow-sm: 0 .125rem .25rem rgba(0, 0, 0, .075);
+    --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+    --border-radius: 0.5rem;
+}
+
+/* 2. GLOBAL STYLES */
+body {
+    font-family: var(--font-family-sans-serif);
+    color: var(--charcoal);
+    line-height: 1.7;
+    /* padding-top: 90px; */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-headings);
+    font-weight: 700;
+}
+
+a {
+    color: var(--secondary);
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+a:hover {
+    color: var(--charcoal);
+    text-decoration: none;
+}
+
+/* 3. COMPONENT STYLES */
+
+/* --- Buttons --- */
+.btn {
+    border-radius: 50px;
+    font-weight: 600;
+    padding: .75rem 1.5rem;
+    transition: all 0.3s ease-in-out;
+    border-width: 2px;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--box-shadow);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: var(--charcoal) !important;
+}
+
+.btn-primary:hover {
+    background-color: #e4bd14;
+    border-color: #e4bd14;
+}
+
+.btn-outline-secondary {
+    border-color: var(--secondary);
+    color: var(--secondary);
+}
+
+.btn-outline-secondary:hover {
+    background-color: var(--secondary);
+    color: var(--white);
+}
+
+/* --- Cards --- */
+.list-card {
+    border: 1px solid #eee;
+    border-radius: var(--border-radius);
+    background-color: var(--white);
+    transition: all 0.3s ease-in-out;
+    box-shadow: none;
+}
+.list-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--box-shadow-sm);
+}
+.list-card .card-img-top {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+}
+.list-card .card-body {
+    padding: 1.5rem;
+}
+
+/* --- Navbar --- */
+.navbar {
+    padding: 1rem 0;
+    transition: all 0.3s ease-in-out;
+    z-index: 1030;
+    background-color: rgba(0, 0, 0, 0.2); 
+    -webkit-backdrop-filter: blur(8px); /* For Safari */
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.navbar.navbar-scrolled {
+    padding: 0.5rem 0;
+    background-color: var(--white);
+    border-bottom: 1px solid #eee;
+    box-shadow: var(--box-shadow-sm);
+}
+.navbar .navbar-brand {
+    display: flex; 
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-family-headings);
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: -5.5px; 
+    padding: 0;
+    line-height: 1;
+    transition: all 0.3s ease-in-out;
+}
+/* The Flag Icon */
+.ghana-flag {
+    width: 1.5rem;
+    height: 1rem;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    /* Initial State: White/Bright */
+    filter: grayscale(100%) brightness(2.5);
+}
+.navbar.navbar-scrolled .ghana-flag {
+    /* Scrolled State: Full Color */
+    filter: none;
+}
+
+/* The Flag Stripes (created with a gradient) */
+.ghana-flag::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(
+        to bottom,
+        var(--ghana-red) 0%, var(--ghana-red) 33.3%,
+        var(--ghana-gold) 33.3%, var(--ghana-gold) 66.6%,
+        var(--ghana-green) 66.6%, var(--ghana-green) 100%
+    );
+}
+
+/* The Black Star */
+.ghana-flag::after {
+    content: '★';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--charcoal);
+    font-size: 0.6rem; /* A small, sharp star */
+    line-height: 1;
+}
+
+/* The Letters */
+.navbar-brand span {
+    display: inline-block;
+    transition: color 0.3s ease-in-out;
+    /* Initial State: White */
+    color: var(--white);
+}
+
+/* Scrolled State: Apply the individual colors */
+.navbar.navbar-scrolled .letter-g1 { color: var(--ghana-red); }
+.navbar.navbar-scrolled .letter-u { color: var(--ghana-gold); }
+.navbar.navbar-scrolled .letter-g2 { color: var(--ghana-green); }
+.navbar.navbar-scrolled .letter-m { color: var(--charcoal); }
+.navbar.navbar-scrolled .navbar-brand {
+    color: var(--charcoal);
+}
+/* .navbar .navbar-brand img {
+    max-height: 35px;
+    transition: all 0.3s ease-in-out;
+}
+.navbar.navbar-scrolled .navbar-brand img {
+    max-height: 30px;
+} */
+.navbar .logo-dark { display: none; }
+.navbar .logo-light { display: block; }
+.navbar.navbar-scrolled .logo-dark { display: block; }
+.navbar.navbar-scrolled .logo-light { display: none; }
+.navbar .nav-link {
+    font-weight: 500;
+    color: var(--white);
+    margin: 0 0.5rem;
+    font-size: .875rem;
+}
+.navbar.navbar-scrolled .nav-link {
+    color: var(--charcoal);
+}
+.navbar .nav-link:hover {
+    color: var(--primary);
+}
+.navbar .dropdown-menu {
+    border-radius: var(--border-radius);
+    border: 1px solid #eee;
+}
+.navbar .dropdown-menu .dropdown-item {
+    color: var(--charcoal) !important;
+}
+.navbar .dropdown-menu .dropdown-item:hover {
+    background-color: var(--gray-100);
+    color: var(--primary) !important;
+}
+.navbar .navbar-toggler { border: none; }
+.navbar .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+.navbar.navbar-scrolled .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* --- Footer --- */
+footer {
+    background-color: var(--gray-100); /* A clean, light background */
+    color: var(--charcoal);
+}
+.footer-logo {
+    max-width: 150px; /* A good, visible size */
+    background-color: var(--white); /* Ensure it looks good if it has transparency */
+    padding: 10px;
+    border-radius: var(--border-radius);
+}
+footer h5 {
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--charcoal);
+}
+.footer-links li {
+    margin-bottom: 0.5rem;
+}
+.footer-links a {
+    color: var(--gray-700);
+}
+.footer-links a:hover {
+    color: var(--primary);
+}
+.social-icons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--white);
+    color: var(--charcoal);
+    margin-right: 0.5rem;
+    border: 1px solid #eee;
+}
+.social-icons a:hover {
+    background-color: var(--primary);
+    color: var(--charcoal);
+}
+
+/* 4. LAYOUT STYLES */
+
+/* --- Hero Section --- */
+.visual-hero {
+    height: 90vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--white);
+}
+
+.visual-hero h1 {
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--white);
+}
+
+.animated-gradient-hero {
+    background-image: url('../images/adinkra-pattern.svg'), 
+                      linear-gradient(-45deg, var(--ghana-red), var(--ghana-gold), var(--ghana-green), #002d1a);
+    
+    background-size: 150px, 400% 400%; /* Pattern size, Gradient size */
+    background-repeat: repeat, no-repeat; /* Pattern repeats, Gradient does not */
+    
+    animation: gradientAnimation 15s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- Page Headers (for News, Events, etc.) --- */
+.page-header {
+    padding: 80px 0;
+    background-color: var(--gray-100);
+    text-align: center;
+}
+.page-header h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+}
+
+/* --- Section Padding --- */
+.section-padding {
+    padding: 100px 0;
+}
+
+/* 5. PAGE-SPECIFIC STYLES */
+
+/* --- Profile Page / Member Dashboard --- */
+.profile-header {
+    padding: 3rem 0;
+    background: linear-gradient(to right, var(--ghana-green), #004d2f); /* Dark green gradient */
+    color: var(--white);
+}
+
+.profile-sidebar {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-sm);
+    text-align: center;
+}
+
+.profile-sidebar .profile-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 1rem auto;
+    border: 4px solid var(--white);
+    box-shadow: var(--box-shadow-sm);
+}
+
+.profile-content {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-sm);
+}
+
+.profile-content .list-group-item {
+    border: none;
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* Badge Style Fixes */
+.badge.bg-primary {
+    background-color: var(--primary) !important;
+    color: var(--charcoal) !important; /* Dark text on gold */
+}
+.badge.bg-success {
+    background-color: var(--success) !important;
+    color: var(--white) !important;
+}
+.badge.bg-secondary {
+    background-color: var(--secondary) !important;
+    color: var(--white) !important;
+}
+
+/* --- Authentication Forms --- */
+.auth-section {
+    background-color: var(--gray-100);
+    padding: 100px 0;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+.auth-card {
+    background-color: var(--white);
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    max-width: 500px;
+    margin: 0 auto;
+}
+.auth-card h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.auth-card .form-control {
+    border-radius: 0.25rem;
+    padding: 0.75rem 1rem;
+}
+.auth-card .form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.2rem rgba(252, 209, 22, 0.25); /* Gold focus glow */
+}
+.auth-card .btn-primary {
+    padding: 0.75rem;
+    font-size: 1rem;
+}
+.auth-links {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+/* --- News & Events Lists --- */
+.news-list-card {
+    display: flex;
+    flex-direction: column; /* Default for mobile */
+    border: 1px solid #eee;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    background-color: var(--white);
+}
+.news-list-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--box-shadow-sm);
+}
+.news-list-card .news-image-col {
+    height: 200px; /* Fixed height for mobile */
+    background-size: cover;
+    background-position: center;
+}
+.news-list-card .news-content-col {
+    padding: 1.5rem;
+}
+/* For larger screens, make it horizontal */
+@media (min-width: 768px) {
+    .news-list-card {
+        flex-direction: row;
+    }
+    .news-list-card .news-image-col {
+        flex: 0 0 250px;
+        height: auto;
+    }
+}
+
+.sidebar-card {
+    padding: 1.5rem;
+    background-color: var(--gray-100);
+    border-radius: var(--border-radius);
+}
+.sidebar-card .form-control,
+.sidebar-card .btn {
+    border-radius: 50px;
+}
+.sidebar-card .badge {
+    background-color: var(--secondary);
+    color: var(--white);
+    padding: 0.5em 1em;
+    margin: 0.2em;
+    display: inline-block;
+}
+
+/* --- Homepage Magazine Grid (for News & Events) --- */
+.magazine-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr); /* 12-column grid */
+    gap: 1.5rem;
+}
+.magazine-grid-full .magazine-card {
+    grid-column: span 12; /* Makes every card full-width */
+}
+
+.magazine-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    background-color: var(--charcoal);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Aligns content to the bottom */
+    min-height: 350px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.magazine-card:hover {
+    transform: scale(1.03);
+}
+
+.magazine-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 60%); /* Gradient for text readability */
+    z-index: 1;
+}
+
+.magazine-card .card-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.magazine-card .card-content {
+    position: relative;
+    z-index: 2;
+    padding: 1.5rem;
+}
+
+.magazine-card .card-date {
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    opacity: 0.8;
+}
+
+.magazine-card .card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--white);
+}
+
+.magazine-card .card-tags {
+    margin-top: 1rem;
+}
+
+.magazine-card .card-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50px;
+    margin-right: 0.5rem;
+    color: var(--white);
+}
+
+/* Grid item placement */
+.grid-item-large {
+    grid-column: span 12;
+}
+@media (min-width: 992px) {
+    .grid-item-large {
+        grid-column: span 6;
+    }
+    .grid-item-small {
+        grid-column: span 6;
+    }
+}
+@media (min-width: 1200px) {
+    .grid-item-large {
+        grid-column: span 8;
+    }
+    .grid-item-small {
+        grid-column: span 4;
+    }
+}
+
+/* Solid color card variants */
+.magazine-card.bg-green {
+    background-color: var(--ghana-green);
+}
+.magazine-card.bg-gold {
+    background-color: var(--ghana-gold);
+}
+.magazine-card.bg-gold .card-title,
+.magazine-card.bg-gold .card-date,
+.magazine-card.bg-gold .card-tag {
+    color: var(--charcoal); /* Dark text on gold background */
+}
+.magazine-card.bg-gold .card-tag {
+    border-color: rgba(0, 0, 0, 0.5);
+}
+
+/* --- Editorial Page Hero (News, Events) --- */
+.page-hero {
+    padding: 6rem 0;
+    background-color: var(--white);
+}
+.page-hero h1 {
+    font-size: 4.5rem;
+    font-weight: 300; /* A lighter, more elegant weight */
+    line-height: 1.2;
+}
+.page-hero .lead-text {
+    font-size: 1rem;
+    max-width: 600px;
+}
+
+/* --- Sticky Sidebar --- */
+.sticky-sidebar {
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 120px; /* Adjust based on your navbar height when scrolled */
+}
+
+/* --- Filter Tags (Sidebar) --- */
+.filter-tags .filter-tag {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 0.75rem 1.5rem;
+    margin-bottom: 0.5rem;
+    background-color: var(--white);
+    border: 1px solid #eee;
+    border-radius: 50px;
+    color: var(--charcoal);
+    font-weight: 500;
+}
+.filter-tags .filter-tag:hover,
+.filter-tags .filter-tag.active {
+    background-color: var(--secondary); /* Green */
+    border-color: var(--secondary);
+    color: var(--white);
+}
+
+/* --- Editorial Article Card (for News) --- */
+.article-card {
+    display: block;
+    color: var(--charcoal);
+    border-bottom: 1px solid #eee;
+    padding: 2.5rem 0;
+}
+.article-card:hover {
+    color: var(--charcoal);
+}
+.article-card:first-child {
+    padding-top: 0;
+}
+.article-card .card-meta {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+.article-card h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+}
+.article-card .card-image {
+    margin-top: 2rem;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+/* --- Article & Event Detail Pages --- */
+.article-header {
+    padding: 4rem 0;
+    background-color: var(--gray-100);
+    border-bottom: 1px solid #eee;
+}
+.article-header h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+.article-header .meta {
+    font-size: 0.9rem;
+    color: var(--gray-700);
+}
+.article-header .meta a {
+    color: var(--gray-700);
+    text-decoration: underline;
+}
+
+.article-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.event-details-card {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 120px; /* Adjust to be below navbar */
+    padding: 1.5rem;
+    background-color: var(--gray-100);
+    border-radius: var(--border-radius);
+}
+.event-details-card ul {
+    padding-left: 0;
+    list-style: none;
+}
+.event-details-card li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #ddd;
+}
+.event-details-card li:last-child {
+    border-bottom: none;
+}
+
+/* 6. RESPONSIVE ADJUSTMENTS */
+@media (max-width: 991.98px) {
+    .hero-section h1 {
+        font-size: 3rem;
+    }
+    .page-header h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .hero-section {
+        min-height: 600px;
+    }
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+    .section-padding {
+        padding: 60px 0;
+    }
+}
+
+/* 7. ANIMATIONS */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Hero Section Text & Animation --- */
+
+/* Apply the animation to all hero elements */
+.animate-hero {
+    opacity: 0; /* Start hidden */
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Stagger the animation for a professional cascade effect */
+.animate-hero:nth-child(1) { /* First h1 */
+    animation-delay: 0.2s;
+}
+.animate-hero:nth-child(2) { /* Second h1 */
+    animation-delay: 0.4s;
+}
+.animate-hero:nth-child(3) { /* The paragraph */
+    animation-delay: 0.6s;
+}
+.animate-hero:nth-child(4) { /* The button */
+    animation-delay: 0.8s;
+}
+
+
+/* Homepage Hero */
+/* .hero-home {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/static/images/home-hero-img.avif');
+} */
+
+/* News Page Hero */
+/* .hero-news {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=1470&q=80');
+} */
+
+/* Events Page Hero */
+/* .hero-events {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1470&q=80');
+} */

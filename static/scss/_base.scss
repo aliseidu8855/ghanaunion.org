@@ -1,0 +1,26 @@
+// static/scss/_base.scss
+
+// This file uses variables defined in _variables.scss
+// It requires the main.scss file to make them available via `@use`.
+
+// Global Styles
+body {
+  font-family: $font-family-sans-serif;
+  color: $dark; // Use our theme color variable
+  line-height: 1.7;
+  padding-top: 0; // Remove any default padding
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: $headings-font-weight;
+}
+
+// Smooth transitions for interactive elements
+a, .btn {
+  transition: all 0.3s ease-in-out;
+}
+
+// Section Padding
+.section-padding {
+  padding: 80px 0;
+}

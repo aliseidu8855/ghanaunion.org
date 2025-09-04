@@ -1,0 +1,10 @@
+// static/scss/main.scss
+
+// 1. FIRST, import the variables. This loads all our variables and color definitions.
+@import 'variables';
+
+// 2. SECOND, import the base styles. These will use the variables defined above.
+@import 'base';
+
+// 3. THIRD, import the custom component styles. These will also use the variables.
+@import 'custom';

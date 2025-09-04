@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Membership Plans{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="text-center mb-5">
+        <h1>Choose Your Membership Plan</h1>
+        <p class="lead-text">Join a global network of Ghanaian professionals and unlock exclusive benefits.</p>
+    </div>
+
+    <!-- Display Messages -->
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="row">
+        {% for tier in membership_tiers %}
+        <div class="col-lg-4">
+            <div class="card mb-5 mb-lg-0 shadow">
+                <div class="card-body">
+                    <h5 class="card-title text-muted text-uppercase text-center">{{ tier.name }}</h5>
+                    <h6 class="card-price text-center">GHS {{ tier.price|floatformat:2 }}<span class="period">/lifetime</span></h6>
+                    <hr>
+                    <p>{{ tier.description }}</p>
+                    <div class="d-grid">
+                        <!-- **CRITICAL CHANGE HERE** -->
+                        <a href="{% url 'membership:initiate_payment' tier.id %}" class="btn btn-primary text-uppercase">Select Plan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

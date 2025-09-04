@@ -1,0 +1,125 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Ghana Union -
+Uniting Ghana, Empowering Progress{% endblock title %} {% block content %}
+<!-- Hero Section (This should already be here) -->
+<section class="visual-hero animated-gradient-hero" style="height: 100vh;">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-12 text-center">
+    <h1 class="display-2 text-white animate-hero">Uniting Ghana,</h1>
+    <h1 class="display-2 text-white animate-hero">Empowering Progress.</h1>
+    <p class="lead-text text-white-50 mx-auto animate-hero" style="max-width: 600px;">
+        Connecting Ghanaians globally for professional development, cultural celebration, and community impact.
+    </p>
+    <a href="{% url 'membership:plans' %}" class="btn btn-primary btn-lg mt-4 animate-hero">Become a Member</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Mission Section -->
+<section class="section-padding">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <img
+          src="/static/images/home-about-img.png"
+          alt="Community Meeting"
+          class="img-fluid rounded-3 shadow"
+        />
+      </div>
+      <div class="col-lg-6 ps-lg-5 mt-5 mt-lg-0">
+        <h2 class="display-5">Akwaaba</h2>
+        <p class="lead-text text-muted">
+          Welcome to the Ghana Union of Greater Manchester website. The Ghanaian
+          Community has been active in Greater Manchester since the Pan-African
+          Congress in 1945. The Ghana Union is a non-profit voluntary and
+          friendly organisation established to bring Ghanaians, friends of Ghana
+          and the general public together, fostering a common bond, projecting
+          our identity and showcasing our culture. It is an organisation that is
+          open and free for all to join and is funded by the voluntary donations
+          of members and fundraising activities. If you would like to support
+          the work of the Union, you can donate online by clicking the donate
+          button above. We encourage you to browse our website for more
+          information about the Union. If you have any questions or would like
+          to speak with a member of the Executive Committee regarding our
+          services, please feel free to reach out.
+        </p>
+        <a href="#" class="btn btn-outline-secondary">Learn More About Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="display-5">Latest Updates</h2>
+                <p class="lead-text text-muted">Stay connected with our upcoming events and community news.</p>
+            </div>
+        </div>
+
+        <div class="magazine-grid">
+            
+            <!-- Featured Event -->
+            {% if upcoming_events.0 %}
+            <a href="{% url 'events:detail' upcoming_events.0.pk %}" class="magazine-card grid-item-large">
+                <img src="{{ upcoming_events.0.featured_image.url }}" alt="{{ upcoming_events.0.title }}" class="card-bg-image">
+                <div class="card-content">
+                    <p class="card-date">{{ upcoming_events.0.date_time|date:"d F Y" }}</p>
+                    <h3 class="card-title">{{ upcoming_events.0.title }}</h3>
+                    <div class="card-tags">
+                        <span class="card-tag">Event</span>
+                    </div>
+                </div>
+            </a>
+            {% endif %}
+
+            <!-- First News Post (Solid Color Card) -->
+            {% if latest_news.0 %}
+            <a href="{% url 'news:detail' latest_news.0.pk %}" class="magazine-card grid-item-small bg-green">
+                <div class="card-content">
+                    <p class="card-date">{{ latest_news.0.published_date|date:"d F Y" }}</p>
+                    <h3 class="card-title">{{ latest_news.0.title }}</h3>
+                    <div class="card-tags">
+                        <span class="card-tag">News</span>
+                        {% for tag in latest_news.0.tags.all|slice:":1" %}
+                        <span class="card-tag">{{ tag.name }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </a>
+            {% endif %}
+
+            <!-- Second News Post -->
+            {% if latest_news.1 %}
+            <a href="{% url 'news:detail' latest_news.1.pk %}" class="magazine-card grid-item-small">
+                <img src="{{ latest_news.1.featured_image.url }}" alt="{{ latest_news.1.title }}" class="card-bg-image">
+                <div class="card-content">
+                    <p class="card-date">{{ latest_news.1.published_date|date:"d F Y" }}</p>
+                    <h3 class="card-title">{{ latest_news.1.title }}</h3>
+                    <div class="card-tags">
+                        <span class="card-tag">News</span>
+                    </div>
+                </div>
+            </a>
+            {% endif %}
+
+            <!-- Second Event (Solid Color Card) -->
+            {% if upcoming_events.1 %}
+            <a href="{% url 'events:detail' upcoming_events.1.pk %}" class="magazine-card grid-item-large bg-gold">
+                <div class="card-content">
+                    <p class="card-date">{{ upcoming_events.1.date_time|date:"d F Y" }}</p>
+                    <h3 class="card-title">{{ upcoming_events.1.title }}</h3>
+                    <div class="card-tags">
+                        <span class="card-tag">Event</span>
+                    </div>
+                </div>
+            </a>
+            {% endif %}
+
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ event.title }}{% endblock %}
+
+{% block content %}
+<!-- Article Header -->
+<div class="article-header" style="padding-top: 120px;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 text-center">
+                <h1>{{ event.title }}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="row">
+            <!-- Left Side: Image & Description -->
+            <div class="col-lg-7">
+                <figure class="mb-5">
+                    <img src="{{ event.featured_image.url }}" class="img-fluid rounded shadow-sm" alt="{{ event.title }}">
+                </figure>
+                <article class="article-content">
+                    {{ event.description|linebreaks }}
+                </article>
+            </div>
+
+            <!-- Right Side: Details & RSVP Card -->
+            <div class="col-lg-5">
+                <div class="event-details-card">
+                    <h4 class="mb-3">Event Details</h4>
+                    <ul>
+                        <li><i class="fa-solid fa-calendar-days fa-fw me-2 text-muted"></i><strong>Date:</strong> {{ event.date_time|date:"l, F d, Y" }}</li>
+                        <li><i class="fa-solid fa-clock fa-fw me-2 text-muted"></i><strong>Time:</strong> {{ event.date_time|time:"g:i A" }}</li>
+                        <li><i class="fa-solid fa-location-dot fa-fw me-2 text-muted"></i><strong>Location:</strong> {{ event.location }}</li>
+                        <li><i class="fa-solid fa-users fa-fw me-2 text-muted"></i><strong>Attendees:</strong> {{ event.attendees.count }}</li>
+                    </ul>
+                    <hr>
+                    {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-success small">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                    
+                    <!-- RSVP Logic -->
+                    {% if event.date_time > now %}
+                        {% if user.is_authenticated %}
+                            <form action="{% url 'events:rsvp' event.pk %}" method="post" class="d-grid">
+                                {% csrf_token %}
+                                {% if is_attending %}
+                                    <button type="submit" class="btn btn-danger btn-lg">Cancel RSVP</button>
+                                {% else %}
+                                    <button type="submit" class="btn btn-success btn-lg">RSVP Now</button>
+                                {% endif %}
+                            </form>
+                        {% else %}
+                            <a href="{% url 'account_login' %}?next={{ request.path }}" class="btn btn-primary btn-lg d-block">Login to RSVP</a>
+                        {% endif %}
+                    {% else %}
+                        <div class="alert alert-light text-center">This event has passed.</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
